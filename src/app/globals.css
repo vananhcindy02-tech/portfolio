@@ -1,0 +1,112 @@
+/* ============================================================
+   Global design system for the Pham Van Anh dossier.
+   Tokens are scoped to .dossier-root so the whole experience
+   can be themed (dark / light) by flipping [data-theme].
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: #08080a;
+  color: #ededed;
+  font-family: var(--font-geist-sans), -apple-system, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  font-size: 16px;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
+}
+
+::selection {
+  background: var(--accent, #5b9dff);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Theme tokens ---------- */
+.dossier-root {
+  --bg: #08080a;
+  --panel: #0d0d10;
+  --panel-hover: #111114;
+  --text: #ededed;
+  --text-strong: #cfcfcf;
+  --text-2: #bdbdbd;
+  --muted: #9a9a9a;
+  --muted-2: #8a8a8a;
+  --faint: #7a7a7a;
+  --faint-2: #5a5a5a;
+  --faint-3: #4a4a4a;
+  --border: rgba(255, 255, 255, 0.08);
+  --bd-strong: rgba(255, 255, 255, 0.14);
+  --bd-soft: rgba(255, 255, 255, 0.06);
+  --hover: rgba(255, 255, 255, 0.02);
+  --header: rgba(8, 8, 10, 0.6);
+  --dot: rgba(255, 255, 255, 0.05);
+  --underline: rgba(255, 255, 255, 0.2);
+  --signal: #7fb88a;
+  --glow: 0.14;
+}
+
+.dossier-root[data-theme="light"] {
+  --bg: #f6f6f7;
+  --panel: #ffffff;
+  --panel-hover: #f0f0f2;
+  --text: #0c0c0e;
+  --text-strong: #2a2a2e;
+  --text-2: #3a3a40;
+  --muted: #62626a;
+  --muted-2: #76767e;
+  --faint: #8a8a92;
+  --faint-2: #a2a2aa;
+  --faint-3: #c2c2ca;
+  --border: rgba(0, 0, 0, 0.1);
+  --bd-strong: rgba(0, 0, 0, 0.16);
+  --bd-soft: rgba(0, 0, 0, 0.07);
+  --hover: rgba(0, 0, 0, 0.03);
+  --header: rgba(246, 246, 247, 0.72);
+  --dot: rgba(0, 0, 0, 0.07);
+  --underline: rgba(0, 0, 0, 0.25);
+  --signal: #2e9e57;
+  --glow: 0.1;
+}
+
+/* Smooth, page-wide colour transition when the theme flips. */
+.dossier-root,
+.dossier-root * {
+  transition: background-color 0.5s ease, border-color 0.5s ease,
+    color 0.5s ease, fill 0.5s ease;
+}
+
+/* Theme toggle glyphs */
+.theme-moon {
+  display: none;
+}
+.dossier-root[data-theme="light"] .theme-sun {
+  display: none;
+}
+.dossier-root[data-theme="light"] .theme-moon {
+  display: inline;
+}
+
+/* NOTE: All @keyframes live in dossier.module.css so their (CSS-Modules-
+   scoped) names stay in sync with the animation references that use them. */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
